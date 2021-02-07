@@ -13,6 +13,7 @@ async function bootstrap() {
   );
   app.setGlobalPrefix('backend');
   app.use(LoggerMiddleware);
-  await app.listen(5000);
+  await app.listen(5000, '0.0.0.0');
+  app.getUrl().then(res => console.log(res));
 }
 bootstrap();

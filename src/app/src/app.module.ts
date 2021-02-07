@@ -9,15 +9,18 @@ import { TestModule } from './test/test.module';
 
 @Module({
   imports: [
-    AuthModule,
-    UsersModule,
-    MongooseModule.forRoot('mongodb://mongo/test', {
-      useNewUrlParser: true,
-    }),
-    AdministratorsModule,
-    TestModule,
+	AuthModule,
+	UsersModule,
+	MongooseModule.forRoot(
+	  `mongodb://${ process.env.MONGO_USERNAME }:${ process.env.MONGO_PASSWORD }@mongo/test?authSource=admin`,
+	  {
+		useNewUrlParser: true
+	  }),
+	AdministratorsModule,
+	TestModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
-export class AppModule {}
+export class AppModule {
+}
